@@ -1,4 +1,4 @@
-# PDF to Obsidian Notes — Claude Code Skill
+# PDF to Obsidian — Claude Code Skill
 
 一个 [Claude Code](https://claude.com/claude-code) 自定义 Skill，用于将 PDF 学习资料（教材、课件、论文、技术文档）转化为高质量的 Obsidian 风格 Markdown 笔记，或基于 PDF 内容对已有笔记进行补充和改写。
 
@@ -159,14 +159,14 @@ venue: "RSS 2023"
 
 ## 安装方法
 
-将 `pdf-to-obsidian-notes` 文件夹放入 Claude Code 的 skills 目录：
+将 `pdf-to-obsidian` 文件夹放入 Claude Code 的 skills 目录：
 
 ```
 # Windows
-C:\Users\<用户名>\.claude\skills\pdf-to-obsidian-notes\
+C:\Users\<用户名>\.claude\skills\pdf-to-obsidian\
 
 # macOS / Linux
-~/.claude/skills/pdf-to-obsidian-notes/
+~/.claude/skills/pdf-to-obsidian/
 ```
 
 放置后 Claude Code 会自动识别该 Skill，无需重启。
@@ -174,7 +174,7 @@ C:\Users\<用户名>\.claude\skills\pdf-to-obsidian-notes\
 ## 文件结构
 
 ```
-pdf-to-obsidian-notes/
+pdf-to-obsidian/
 ├── SKILL.md                    # 主指令文件（~290行）
 ├── LICENSE.txt                 # MIT 许可证
 ├── README.md                   # 本文档
@@ -197,7 +197,7 @@ pdf-to-obsidian-notes/
 - `summarize this paper into notes`
 - 同时提到 PDF 路径和 .md 笔记路径，并要求写入/改写
 
-也可以直接调用：`/pdf-to-obsidian-notes`
+也可以直接调用：`/pdf-to-obsidian`
 
 ## 工作流概览
 

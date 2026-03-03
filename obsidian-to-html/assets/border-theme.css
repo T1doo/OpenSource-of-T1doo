@@ -1,0 +1,976 @@
+/* ============================================================
+   Border Theme CSS — Distilled for standalone HTML export
+   Source: Akifyss/Border theme for Obsidian (hue=232)
+   Only content-rendering styles; no Obsidian UI chrome.
+   ============================================================ */
+
+/* ---------- CSS Variables: Light Mode ---------- */
+:root,
+[data-theme="light"] {
+    --accent-h: 232;
+    --accent-s: 96%;
+    --accent-l: 64%;
+
+    --bg-primary: #ffffff;
+    --bg-secondary: #fafafa;
+    --bg-alt: #f5f5f5;
+    --bg-modifier-border: hsla(232, 38.4%, 64%, 0.2);
+
+    --text-normal: hsl(232, 6%, 12%);
+    --text-muted: hsl(232, 9%, 36%);
+    --text-faint: hsl(232, 12%, 64%);
+    --text-accent: hsl(232, 96%, 64%);
+
+    --interactive-accent: hsl(232, 96%, 64%);
+    --interactive-accent-rgb: 82, 98, 235;
+
+    --color-red: rgb(221, 44, 56);
+    --color-orange: rgb(222, 116, 23);
+    --color-yellow: rgb(192, 156, 12);
+    --color-green: rgb(29, 165, 29);
+    --color-cyan: rgb(22, 166, 171);
+    --color-blue: rgb(23, 117, 217);
+    --color-purple: rgb(143, 71, 225);
+    --color-pink: rgb(221, 19, 153);
+
+    --code-bg: #f5f5f5;
+    --code-border: 1px dashed hsla(232, 38.4%, 64%, 0.2);
+    --inline-code-color: var(--color-pink);
+    --inline-code-bg: #f5f5f5;
+
+    --callout-content-bg: rgba(255, 255, 255, 0.75);
+    --blockquote-bg: #f5f5f5;
+    --table-header-bg: #f5f5f5;
+    --tag-bg: hsla(232, 96%, 64%, 0.1);
+    --tag-border: hsla(232, 96%, 64%, 0.15);
+    --highlight-bg: rgba(255, 208, 0, 0.4);
+    --checkbox-checked: var(--color-green);
+
+    --shadow-s: 0px 1px 2px rgba(0, 0, 0, 0.028),
+                0px 3.4px 6.7px rgba(0, 0, 0, .042),
+                0px 15px 30px rgba(0, 0, 0, .07);
+
+    color-scheme: light;
+}
+
+/* ---------- CSS Variables: Dark Mode ---------- */
+[data-theme="dark"] {
+    --accent-h: 232;
+    --accent-s: 40%;
+    --accent-l: 60%;
+
+    --bg-primary: hsl(232, 8%, 16.7%);
+    --bg-secondary: hsl(232, 8%, 18%);
+    --bg-alt: hsl(232, 8%, 22%);
+    --bg-modifier-border: hsla(232, 15%, 50%, 0.2);
+
+    --text-normal: hsl(232, 15%, 85%);
+    --text-muted: hsl(232, 12%, 75%);
+    --text-faint: hsl(232, 9%, 50%);
+    --text-accent: hsl(232, 40%, 70%);
+
+    --interactive-accent: hsl(232, 40%, 60%);
+    --interactive-accent-rgb: 92, 102, 173;
+
+    --color-red: rgb(255, 120, 129);
+    --color-orange: rgb(251, 187, 131);
+    --color-yellow: rgb(255, 232, 139);
+    --color-green: rgb(124, 211, 124);
+    --color-cyan: rgb(134, 223, 226);
+    --color-blue: rgb(137, 189, 244);
+    --color-purple: rgb(203, 158, 255);
+    --color-pink: rgb(242, 182, 222);
+
+    --code-bg: hsl(232, 8%, 22%);
+    --code-border: 1px dashed hsla(232, 15%, 50%, 0.2);
+    --inline-code-color: var(--color-pink);
+    --inline-code-bg: hsl(232, 8%, 22%);
+
+    --callout-content-bg: rgba(0, 0, 0, 0.25);
+    --blockquote-bg: hsl(232, 8%, 22%);
+    --table-header-bg: hsl(232, 8%, 22%);
+    --tag-bg: hsla(232, 40%, 60%, 0.1);
+    --tag-border: hsla(232, 40%, 60%, 0.15);
+    --highlight-bg: rgba(255, 208, 0, 0.3);
+    --checkbox-checked: var(--color-green);
+
+    --shadow-s: 0px 1px 2px rgba(0, 0, 0, 0.08),
+                0px 3.4px 6.7px rgba(0, 0, 0, .12),
+                0px 15px 30px rgba(0, 0, 0, .2);
+
+    color-scheme: dark;
+}
+
+/* Auto mode: follow system preference */
+@media (prefers-color-scheme: dark) {
+    [data-theme="auto"] {
+        --accent-h: 232;
+        --accent-s: 40%;
+        --accent-l: 60%;
+        --bg-primary: hsl(232, 8%, 16.7%);
+        --bg-secondary: hsl(232, 8%, 18%);
+        --bg-alt: hsl(232, 8%, 22%);
+        --bg-modifier-border: hsla(232, 15%, 50%, 0.2);
+        --text-normal: hsl(232, 15%, 85%);
+        --text-muted: hsl(232, 12%, 75%);
+        --text-faint: hsl(232, 9%, 50%);
+        --text-accent: hsl(232, 40%, 70%);
+        --interactive-accent: hsl(232, 40%, 60%);
+        --interactive-accent-rgb: 92, 102, 173;
+        --color-red: rgb(255, 120, 129);
+        --color-orange: rgb(251, 187, 131);
+        --color-yellow: rgb(255, 232, 139);
+        --color-green: rgb(124, 211, 124);
+        --color-cyan: rgb(134, 223, 226);
+        --color-blue: rgb(137, 189, 244);
+        --color-purple: rgb(203, 158, 255);
+        --color-pink: rgb(242, 182, 222);
+        --code-bg: hsl(232, 8%, 22%);
+        --code-border: 1px dashed hsla(232, 15%, 50%, 0.2);
+        --inline-code-color: var(--color-pink);
+        --inline-code-bg: hsl(232, 8%, 22%);
+        --callout-content-bg: rgba(0, 0, 0, 0.25);
+        --blockquote-bg: hsl(232, 8%, 22%);
+        --table-header-bg: hsl(232, 8%, 22%);
+        --tag-bg: hsla(232, 40%, 60%, 0.1);
+        --tag-border: hsla(232, 40%, 60%, 0.15);
+        --highlight-bg: rgba(255, 208, 0, 0.3);
+        --checkbox-checked: var(--color-green);
+        --shadow-s: 0px 1px 2px rgba(0, 0, 0, 0.08),
+                    0px 3.4px 6.7px rgba(0, 0, 0, .12),
+                    0px 15px 30px rgba(0, 0, 0, .2);
+        color-scheme: dark;
+    }
+}
+
+@media (prefers-color-scheme: light) {
+    [data-theme="auto"] {
+        --bg-primary: #ffffff;
+        --bg-secondary: #fafafa;
+        --bg-alt: #f5f5f5;
+        --bg-modifier-border: hsla(232, 38.4%, 64%, 0.2);
+        --text-normal: hsl(232, 6%, 12%);
+        --text-muted: hsl(232, 9%, 36%);
+        --text-faint: hsl(232, 12%, 64%);
+        --text-accent: hsl(232, 96%, 64%);
+        --interactive-accent: hsl(232, 96%, 64%);
+        --interactive-accent-rgb: 82, 98, 235;
+        --color-red: rgb(221, 44, 56);
+        --color-orange: rgb(222, 116, 23);
+        --color-yellow: rgb(192, 156, 12);
+        --color-green: rgb(29, 165, 29);
+        --color-cyan: rgb(22, 166, 171);
+        --color-blue: rgb(23, 117, 217);
+        --color-purple: rgb(143, 71, 225);
+        --color-pink: rgb(221, 19, 153);
+        --code-bg: #f5f5f5;
+        --code-border: 1px dashed hsla(232, 38.4%, 64%, 0.2);
+        --inline-code-color: var(--color-pink);
+        --inline-code-bg: #f5f5f5;
+        --callout-content-bg: rgba(255, 255, 255, 0.75);
+        --blockquote-bg: #f5f5f5;
+        --table-header-bg: #f5f5f5;
+        --tag-bg: hsla(232, 96%, 64%, 0.1);
+        --tag-border: hsla(232, 96%, 64%, 0.15);
+        --highlight-bg: rgba(255, 208, 0, 0.4);
+        --checkbox-checked: var(--color-green);
+        --shadow-s: 0px 1px 2px rgba(0, 0, 0, 0.028),
+                    0px 3.4px 6.7px rgba(0, 0, 0, .042),
+                    0px 15px 30px rgba(0, 0, 0, .07);
+        color-scheme: light;
+    }
+}
+
+/* ---------- Base Layout ---------- */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    font-size: 14px;
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: "霞鹜文楷 GB", "华文楷体", "KaiTi", "LXGW WenKai GB", serif;
+    line-height: 1.5;
+    color: var(--text-normal);
+    background-color: var(--bg-primary);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+/* ---------- Note Header ---------- */
+.note-header {
+    max-width: 1340px;
+    margin: 0 auto;
+    padding: 2rem 2rem 1rem;
+    border-bottom: 1px solid var(--bg-modifier-border);
+    margin-bottom: 0.5rem;
+}
+
+.note-title {
+    font-size: 1.8em;
+    font-weight: 700;
+    margin-bottom: 0.5em;
+    border-left: 4px solid var(--interactive-accent);
+    padding-left: 0.6em;
+}
+
+.note-meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5em;
+    align-items: center;
+    font-size: 0.9em;
+    color: var(--text-muted);
+}
+
+.prop-item {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.3em;
+}
+
+.prop-icon {
+    font-size: 1em;
+}
+
+/* ---------- Three-column Page Layout ---------- */
+.page-layout {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.page-layout.layout-three-col {
+    display: grid;
+    grid-template-columns: 220px minmax(0, 1fr) 260px;
+    gap: 1.5rem;
+    max-width: 1340px;
+    margin: 0 auto;
+    padding: 0 1rem;
+    align-items: start;
+}
+
+.container {
+    max-width: 800px;
+    padding: 1.5rem 1rem 4rem;
+    min-width: 0; /* prevent grid blowout */
+}
+
+/* ---------- Sidebar Common ---------- */
+.sidebar {
+    position: sticky;
+    top: 1rem;
+    max-height: calc(100vh - 2rem);
+    overflow-y: auto;
+    padding: 1rem 0;
+    font-size: 0.85em;
+}
+
+.sidebar::-webkit-scrollbar {
+    width: 3px;
+}
+
+.sidebar::-webkit-scrollbar-thumb {
+    background: var(--bg-modifier-border);
+    border-radius: 3px;
+}
+
+/* ---------- Left Sidebar: TOC ---------- */
+.sidebar-left {
+    padding-right: 1rem;
+    border-right: 1px solid var(--bg-modifier-border);
+}
+
+.toc-nav {
+    /* container */
+}
+
+.toc-header {
+    font-weight: 700;
+    font-size: 1em;
+    color: var(--text-normal);
+    margin-bottom: 0.75em;
+    padding-bottom: 0.5em;
+    border-bottom: 1px solid var(--bg-modifier-border);
+    letter-spacing: 0.03em;
+}
+
+.toc-list {
+    list-style: none;
+    padding-left: 0;
+    margin: 0;
+}
+
+.toc-list ul {
+    list-style: none;
+    padding-left: 0.9em;
+    margin: 0;
+}
+
+.toc-list li {
+    margin-bottom: 0;
+}
+
+.toc-link {
+    display: block;
+    padding: 0.25em 0.5em;
+    color: var(--text-muted);
+    text-decoration: none;
+    border-radius: 4px;
+    transition: color 0.15s, background 0.15s;
+    line-height: 1.4;
+    border-left: 2px solid transparent;
+}
+
+.toc-link:hover {
+    color: var(--text-accent);
+    background: var(--tag-bg);
+}
+
+.toc-link.toc-active {
+    color: var(--text-accent);
+    border-left-color: var(--interactive-accent);
+    background: var(--tag-bg);
+    font-weight: 600;
+}
+
+.toc-h1 { font-weight: 600; }
+.toc-h2 { font-weight: 500; }
+.toc-h3, .toc-h4, .toc-h5, .toc-h6 { font-weight: 400; font-size: 0.95em; }
+
+/* ---------- Right Sidebar: Summary ---------- */
+.sidebar-right {
+    padding-left: 1rem;
+    border-left: 1px solid var(--bg-modifier-border);
+}
+
+.summary-panel {
+    /* container */
+}
+
+.summary-header {
+    font-weight: 700;
+    font-size: 1em;
+    color: var(--text-normal);
+    margin-bottom: 0.75em;
+    padding-bottom: 0.5em;
+    border-bottom: 1px solid var(--bg-modifier-border);
+    display: flex;
+    align-items: center;
+    gap: 0.4em;
+}
+
+.summary-badge {
+    font-size: 0.7em;
+    font-weight: 600;
+    color: var(--color-purple);
+    background: hsla(272, 60%, 60%, 0.1);
+    border: 1px solid hsla(272, 60%, 60%, 0.2);
+    border-radius: 2em;
+    padding: 0.1em 0.6em;
+}
+
+.summary-section {
+    margin-bottom: 1em;
+}
+
+.summary-section-title {
+    font-weight: 600;
+    font-size: 0.9em;
+    color: var(--text-normal);
+    margin-bottom: 0.3em;
+    display: flex;
+    align-items: center;
+    gap: 0.3em;
+}
+
+.summary-section ul {
+    list-style: none;
+    padding-left: 0;
+    margin: 0;
+}
+
+.summary-section li {
+    padding: 0.2em 0;
+    padding-left: 1em;
+    position: relative;
+    color: var(--text-muted);
+    line-height: 1.5;
+}
+
+.summary-section li::before {
+    content: "•";
+    position: absolute;
+    left: 0.2em;
+    color: var(--text-faint);
+}
+
+.summary-section p {
+    color: var(--text-muted);
+    margin-bottom: 0.3em;
+    line-height: 1.5;
+}
+
+.summary-keyword {
+    display: inline-block;
+    font-size: 0.85em;
+    background: var(--tag-bg);
+    border: 1px solid var(--tag-border);
+    color: var(--text-accent);
+    border-radius: 2em;
+    padding: 0.1em 0.5em;
+    margin: 0.1em 0.15em;
+}
+
+/* ---------- Responsive: collapse sidebars on small screens ---------- */
+@media (max-width: 1100px) {
+    .page-layout.layout-three-col {
+        grid-template-columns: 200px minmax(0, 1fr);
+    }
+    .sidebar-right {
+        position: static;
+        max-height: none;
+        grid-column: 1 / -1;
+        border-left: none;
+        border-top: 1px solid var(--bg-modifier-border);
+        padding: 1rem 0 0;
+        margin-top: 1rem;
+        z-index: 2;
+        background: var(--bg-primary);
+    }
+}
+
+@media (max-width: 800px) {
+    .page-layout.layout-three-col {
+        display: block;
+        padding: 0;
+    }
+    .sidebar-left {
+        position: static;
+        max-height: none;
+        border-right: none;
+        border-bottom: 1px solid var(--bg-modifier-border);
+        padding: 1rem;
+    }
+    .sidebar-right {
+        position: static;
+        max-height: none;
+        border-left: none;
+        border-top: 1px solid var(--bg-modifier-border);
+        padding: 1rem;
+        margin-top: 0;
+    }
+    .container {
+        padding: 1.5rem 1rem 4rem;
+    }
+    .note-header {
+        padding: 1.5rem 1rem 1rem;
+    }
+}
+
+/* ---------- Headings ---------- */
+h1, h2, h3, h4, h5, h6 {
+    margin-top: 1.5em;
+    margin-bottom: 0.5em;
+    line-height: 1.2;
+    position: relative;
+    padding-left: 0.75em;
+}
+
+h1 { font-size: 1.5em;   font-weight: 700; border-left: 3px solid var(--color-red);    }
+h2 { font-size: 1.425em; font-weight: 675; border-left: 3px solid var(--color-orange); }
+h3 { font-size: 1.35em;  font-weight: 650; border-left: 3px solid var(--color-yellow); line-height: 1.3; }
+h4 { font-size: 1.275em; font-weight: 625; border-left: 3px solid var(--color-green);  line-height: 1.4; }
+h5 { font-size: 1.2em;   font-weight: 600; border-left: 3px solid var(--color-blue);   }
+h6 { font-size: 1.125em; font-weight: 575; border-left: 3px solid var(--color-purple); }
+
+h1:first-child { margin-top: 0; }
+
+/* ---------- Paragraphs & Text ---------- */
+p {
+    margin-bottom: 0.75em;
+}
+
+strong {
+    font-weight: 700;
+}
+
+em {
+    font-style: italic;
+}
+
+del {
+    text-decoration: line-through;
+    color: var(--text-muted);
+}
+
+mark, .highlight {
+    background-color: var(--highlight-bg);
+    padding: 0.05em 0.2em;
+    border-radius: 3px;
+}
+
+/* ---------- Links ---------- */
+a {
+    color: var(--text-accent);
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+/* Internal links (wikilinks) */
+.internal-link {
+    color: var(--text-accent);
+    cursor: default;
+    text-decoration: none;
+    border-bottom: 1px dashed var(--text-accent);
+}
+
+/* ---------- Lists ---------- */
+ul, ol {
+    margin-bottom: 0.75em;
+    padding-left: 1.5em;
+}
+
+li {
+    margin-bottom: 0.25em;
+}
+
+li > ul, li > ol {
+    margin-bottom: 0;
+    margin-top: 0.25em;
+}
+
+/* ---------- Checkboxes ---------- */
+.task-list-item {
+    list-style: none;
+    margin-left: -1.5em;
+    padding-left: 0;
+}
+
+.task-list-item input[type="checkbox"] {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 1.1em;
+    height: 1.1em;
+    border: 2px solid var(--text-faint);
+    border-radius: 6px;
+    vertical-align: middle;
+    margin-right: 0.5em;
+    position: relative;
+    cursor: default;
+}
+
+.task-list-item input[type="checkbox"]:checked {
+    background-color: var(--checkbox-checked);
+    border-color: var(--checkbox-checked);
+}
+
+.task-list-item input[type="checkbox"]:checked::after {
+    content: "";
+    position: absolute;
+    left: 3px;
+    top: 0px;
+    width: 5px;
+    height: 9px;
+    border: solid white;
+    border-width: 0 2px 2px 0;
+    transform: rotate(45deg);
+}
+
+/* ---------- Blockquotes ---------- */
+blockquote {
+    border-left: 3px solid var(--interactive-accent);
+    padding: 0.5em 1em;
+    margin: 0.75em 0;
+    color: var(--text-normal);
+    background-color: var(--blockquote-bg);
+    border-radius: 4px;
+    background-image: radial-gradient(circle, var(--bg-modifier-border) 0.5px, transparent 0.5px);
+    background-size: 8px 8px;
+}
+
+blockquote p:last-child {
+    margin-bottom: 0;
+}
+
+/* ---------- Code: Inline ---------- */
+:not(pre) > code {
+    font-family: "JetBrains Mono", "Fira Code", "Cascadia Code", Consolas, monospace;
+    font-size: 0.9em;
+    color: var(--inline-code-color);
+    background-color: var(--inline-code-bg);
+    padding: 0.15em 0.4em;
+    border-radius: 4px;
+    background-image: radial-gradient(circle, var(--bg-modifier-border) 0.5px, transparent 0.5px);
+    background-size: 8px 8px;
+}
+
+/* ---------- Code: Fenced Blocks ---------- */
+pre {
+    margin: 0.75em 0;
+    border-radius: 6px;
+    overflow-x: auto;
+    border: var(--code-border);
+    background-color: var(--code-bg);
+    background-image: radial-gradient(circle, var(--bg-modifier-border) 0.5px, transparent 0.5px);
+    background-size: 8px 8px;
+}
+
+pre code {
+    font-family: "JetBrains Mono", "Fira Code", "Cascadia Code", Consolas, monospace;
+    font-size: 0.85em;
+    display: block;
+    padding: 1em;
+    color: var(--text-muted);
+    line-height: 1.6;
+    white-space: pre-wrap;
+    word-break: break-word;
+}
+
+/* Code language label */
+pre[data-lang]::before {
+    content: attr(data-lang);
+    display: block;
+    padding: 0.25em 1em;
+    font-size: 0.75em;
+    color: var(--text-faint);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    border-bottom: var(--code-border);
+}
+
+/* Syntax highlight tokens */
+.token-keyword   { color: var(--color-pink);   }
+.token-string    { color: var(--color-green);  }
+.token-comment   { color: var(--text-faint);   font-style: italic; }
+.token-function  { color: var(--color-yellow); }
+.token-number    { color: var(--color-purple); }
+.token-operator  { color: var(--color-red);    }
+.token-property  { color: var(--color-cyan);   }
+.token-tag       { color: var(--color-red);    }
+.token-value     { color: var(--color-purple); }
+.token-important { color: var(--color-orange); }
+.token-type      { color: var(--color-cyan);   }
+
+/* ---------- Tables ---------- */
+table {
+    border-collapse: collapse;
+    width: 100%;
+    margin: 0.75em 0;
+    font-size: 0.95em;
+}
+
+thead tr {
+    background-color: var(--table-header-bg);
+    background-image: radial-gradient(circle, var(--bg-modifier-border) 0.5px, transparent 0.5px);
+    background-size: 8px 8px;
+}
+
+th, td {
+    padding: 0.5em 0.75em;
+    border: 1px solid var(--bg-modifier-border);
+    text-align: left;
+}
+
+th {
+    font-weight: 600;
+}
+
+/* ---------- Horizontal Rules ---------- */
+hr {
+    border: none;
+    border-top: 1px solid var(--bg-modifier-border);
+    margin: 1.5em 0;
+}
+
+/* ---------- Images ---------- */
+img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 6px;
+    display: block;
+    margin: 0.75em auto;
+    box-shadow: var(--shadow-s);
+}
+
+.image-placeholder {
+    display: block;
+    padding: 1em;
+    margin: 0.75em 0;
+    text-align: center;
+    color: var(--text-faint);
+    border: 2px dashed var(--bg-modifier-border);
+    border-radius: 6px;
+    font-style: italic;
+}
+
+/* ---------- Tags ---------- */
+.tag {
+    display: inline-block;
+    font-size: 0.85em;
+    color: var(--text-accent);
+    background-color: var(--tag-bg);
+    border: 1px solid var(--tag-border);
+    padding: 0.15em 0.65em;
+    border-radius: 2em;
+    text-decoration: none;
+    white-space: nowrap;
+}
+
+/* ---------- Callouts ---------- */
+.callout {
+    margin: 0.75em 0;
+    border-radius: 6px;
+    border: 1px solid;
+    overflow: hidden;
+}
+
+.callout-title {
+    display: flex;
+    align-items: center;
+    gap: 0.5em;
+    padding: 0.5em 1em;
+    font-weight: 600;
+    font-size: 0.95em;
+}
+
+.callout-icon {
+    flex-shrink: 0;
+    width: 1.2em;
+    height: 1.2em;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.callout-content {
+    padding: 0 1em 0.75em;
+    background-color: var(--callout-content-bg);
+}
+
+.callout-content p:last-child {
+    margin-bottom: 0;
+}
+
+/* Callout fold indicator */
+.callout-fold {
+    margin-left: auto;
+    transition: transform 0.2s;
+    flex-shrink: 0;
+}
+
+details.callout[open] .callout-fold {
+    transform: rotate(90deg);
+}
+
+details.callout summary {
+    cursor: pointer;
+    list-style: none;
+}
+
+details.callout summary::-webkit-details-marker { display: none; }
+details.callout summary::marker { display: none; }
+
+/* Callout types — background + border color */
+.callout-note      { border-color: var(--color-blue);   background: rgba(23, 117, 217, 0.08); }
+.callout-info      { border-color: var(--color-blue);   background: rgba(23, 117, 217, 0.08); }
+.callout-abstract, .callout-summary, .callout-tldr
+                   { border-color: var(--color-cyan);   background: rgba(22, 166, 171, 0.08); }
+.callout-tip, .callout-hint
+                   { border-color: var(--color-cyan);   background: rgba(22, 166, 171, 0.08); }
+.callout-success, .callout-check, .callout-done
+                   { border-color: var(--color-green);  background: rgba(29, 165, 29, 0.08); }
+.callout-question, .callout-help, .callout-faq
+                   { border-color: var(--color-orange); background: rgba(222, 116, 23, 0.08); }
+.callout-warning, .callout-caution, .callout-attention
+                   { border-color: var(--color-orange); background: rgba(222, 116, 23, 0.08); }
+.callout-failure, .callout-fail, .callout-missing
+                   { border-color: var(--color-red);    background: rgba(221, 44, 56, 0.08); }
+.callout-danger, .callout-error
+                   { border-color: var(--color-red);    background: rgba(221, 44, 56, 0.08); }
+.callout-bug       { border-color: var(--color-red);    background: rgba(221, 44, 56, 0.08); }
+.callout-example   { border-color: var(--color-purple); background: rgba(143, 71, 225, 0.08); }
+.callout-quote, .callout-cite
+                   { border-color: var(--text-muted);   background: rgba(128, 128, 128, 0.08); }
+.callout-important { border-color: var(--color-cyan);   background: rgba(22, 166, 171, 0.08); }
+.callout-definition{ border-color: var(--color-blue);   background: rgba(23, 117, 217, 0.08); }
+.callout-todo      { border-color: var(--color-blue);   background: rgba(23, 117, 217, 0.08); }
+
+/* Callout title color matches type */
+.callout-note .callout-title,
+.callout-info .callout-title,
+.callout-definition .callout-title,
+.callout-todo .callout-title       { color: var(--color-blue); }
+
+.callout-abstract .callout-title,
+.callout-summary .callout-title,
+.callout-tldr .callout-title,
+.callout-tip .callout-title,
+.callout-hint .callout-title,
+.callout-important .callout-title  { color: var(--color-cyan); }
+
+.callout-success .callout-title,
+.callout-check .callout-title,
+.callout-done .callout-title       { color: var(--color-green); }
+
+.callout-question .callout-title,
+.callout-help .callout-title,
+.callout-faq .callout-title,
+.callout-warning .callout-title,
+.callout-caution .callout-title,
+.callout-attention .callout-title  { color: var(--color-orange); }
+
+.callout-failure .callout-title,
+.callout-fail .callout-title,
+.callout-missing .callout-title,
+.callout-danger .callout-title,
+.callout-error .callout-title,
+.callout-bug .callout-title        { color: var(--color-red); }
+
+.callout-example .callout-title    { color: var(--color-purple); }
+
+.callout-quote .callout-title,
+.callout-cite .callout-title       { color: var(--text-muted); }
+
+/* Dark mode callout backgrounds - slightly different opacity */
+[data-theme="dark"] .callout-note,
+[data-theme="dark"] .callout-info      { background: rgba(137, 189, 244, 0.06); }
+[data-theme="dark"] .callout-abstract,
+[data-theme="dark"] .callout-summary,
+[data-theme="dark"] .callout-tldr,
+[data-theme="dark"] .callout-tip,
+[data-theme="dark"] .callout-hint,
+[data-theme="dark"] .callout-important { background: rgba(134, 223, 226, 0.06); }
+[data-theme="dark"] .callout-success,
+[data-theme="dark"] .callout-check,
+[data-theme="dark"] .callout-done      { background: rgba(124, 211, 124, 0.06); }
+[data-theme="dark"] .callout-question,
+[data-theme="dark"] .callout-help,
+[data-theme="dark"] .callout-faq,
+[data-theme="dark"] .callout-warning,
+[data-theme="dark"] .callout-caution,
+[data-theme="dark"] .callout-attention { background: rgba(251, 187, 131, 0.06); }
+[data-theme="dark"] .callout-failure,
+[data-theme="dark"] .callout-fail,
+[data-theme="dark"] .callout-missing,
+[data-theme="dark"] .callout-danger,
+[data-theme="dark"] .callout-error,
+[data-theme="dark"] .callout-bug       { background: rgba(255, 120, 129, 0.06); }
+[data-theme="dark"] .callout-example   { background: rgba(203, 158, 255, 0.06); }
+[data-theme="dark"] .callout-quote,
+[data-theme="dark"] .callout-cite      { background: rgba(128, 128, 128, 0.06); }
+[data-theme="dark"] .callout-definition,
+[data-theme="dark"] .callout-todo      { background: rgba(137, 189, 244, 0.06); }
+
+/* ---------- Footnotes ---------- */
+.footnotes {
+    margin-top: 2em;
+    padding-top: 1em;
+    border-top: 1px solid var(--bg-modifier-border);
+    font-size: 0.9em;
+    color: var(--text-muted);
+}
+
+.footnote-ref {
+    font-size: 0.75em;
+    vertical-align: super;
+    color: var(--text-accent);
+}
+
+/* ---------- Note Embed Placeholder ---------- */
+.embed-placeholder {
+    display: block;
+    margin: 0.75em 0;
+    padding: 0.75em 1em;
+    border: 1px dashed var(--bg-modifier-border);
+    border-radius: 6px;
+    color: var(--text-faint);
+    font-style: italic;
+    background-color: var(--bg-secondary);
+}
+
+.embed-placeholder::before {
+    content: "📄 ";
+}
+
+/* ---------- Math (KaTeX) ---------- */
+.math-block {
+    margin: 0.75em 0;
+    overflow-x: auto;
+    text-align: center;
+}
+
+.math-inline {
+    display: inline;
+}
+
+/* ---------- Mermaid ---------- */
+.mermaid {
+    margin: 0.75em 0;
+    text-align: center;
+    background: var(--bg-secondary);
+    padding: 1em;
+    border-radius: 6px;
+}
+
+/* ---------- Theme Toggle Button ---------- */
+.theme-toggle {
+    position: fixed;
+    top: 1rem;
+    right: 1rem;
+    z-index: 1000;
+    width: 2.5rem;
+    height: 2.5rem;
+    border: 1px solid var(--bg-modifier-border);
+    border-radius: 50%;
+    background: var(--bg-secondary);
+    color: var(--text-muted);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.2rem;
+    transition: background 0.2s, color 0.2s;
+    box-shadow: var(--shadow-s);
+}
+
+.theme-toggle:hover {
+    background: var(--bg-alt);
+    color: var(--text-normal);
+}
+
+/* ---------- Scrollbar ---------- */
+::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+}
+
+::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--bg-modifier-border);
+    border-radius: 3px;
+}
+
+/* ---------- Selection ---------- */
+::selection {
+    background: hsla(232, 96%, 64%, 0.2);
+}
+
+/* ---------- Print ---------- */
+@media print {
+    .theme-toggle { display: none; }
+    body { background: white; color: black; }
+    .container { max-width: 100%; padding: 0; }
+    pre { border: 1px solid #ccc; }
+    a { color: inherit; text-decoration: underline; }
+}
