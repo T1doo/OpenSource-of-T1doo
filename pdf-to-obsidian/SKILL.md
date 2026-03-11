@@ -1,5 +1,5 @@
 ---
-name: pdf-to-obsidian-notes
+name: pdf-to-obsidian
 description: >
   Read PDF source materials (textbooks, lecture slides, academic papers, technical docs) and create
   or enrich Obsidian-flavored markdown notes from them. Use this skill whenever the user wants to:
@@ -64,42 +64,76 @@ If the user says "在同一目录下生成" or similar, place the output in the 
 For `language: "auto"`: if the target note exists, match its language; otherwise detect from the
 primary PDF content. Chinese sources → Chinese notes with English technical terms preserved.
 
-### Step 2 — Read PDFs
+### Step 2 — Read PDFs (智能两层回退机制)
 
-**Primary method** — Use the Read tool with the `pages` parameter:
+Use a two-tier fallback strategy to handle PDFs of any size. This approach works for electronic PDFs with selectable text. For scanned/image-based PDFs, use the pdf skill with OCR capabilities instead.
 
+**Method 1: Read tool (优先尝试)**
+
+The fastest method, but has limitations:
+- Works for PDFs < 100MB
+- Requires pdftoppm to be installed (part of Poppler tools)
 - PDFs ≤ 10 pages: read all at once
 - PDFs > 10 pages: read in chunks of up to 20 pages per Read call
 - Track page ranges read so far to avoid rereading
 
-**Fallback (pdfplumber)** — If the Read tool fails on a PDF (common on Windows where `pdftoppm`
-is not installed), fall back to extracting text via pdfplumber in Bash. If pdfplumber is not
-installed, run `pip install pdfplumber` first. Use this snippet:
+If the Read tool fails with "exceeds maximum allowed size" error or "pdftoppm failed", proceed to Method 2.
+
+**Method 2: pdfplumber (回退方案 - 处理超大文件)**
+
+Use when Read tool fails due to file size (>100MB) or missing pdftoppm. This method has no file size limit and works for any electronic PDF.
+
+First, check if pdfplumber is installed:
+```bash
+python -c "import pdfplumber" 2>/dev/null || pip install pdfplumber
+```
+
+Then extract text with proper UTF-8 encoding to handle Chinese content:
 
 ```bash
-python -u -c "
+python -c "
 import sys, io
-sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding='utf-8', errors='replace')
+sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding='utf-8')
 import pdfplumber
-pdf = pdfplumber.open(r'<path>')
-print(f'Total pages: {len(pdf.pages)}')
-for i, page in enumerate(pdf.pages[START:END]):
-    text = page.extract_text() or ''
-    print(f'=== PAGE {i+START+1} ===')
-    print(text)
+
+pdf_path = r'<path>'
+with pdfplumber.open(pdf_path) as pdf:
+    total_pages = len(pdf.pages)
+    print(f'PDF 总页数: {total_pages}')
+
+    # Read in chunks (10 pages per call to avoid output overflow)
+    for i in range(START, END):
+        page = pdf.pages[i]
+        text = page.extract_text()
+
+        # Check if this is a scanned PDF (no extractable text)
+        if not text or len(text.strip()) < 50:
+            print(f'WARNING: Page {i+1} appears to be scanned (no text extracted)')
+            print('This PDF may be scanned/image-based. Please use an electronic version with selectable text.')
+            break
+
+        print(f'=== PAGE {i+1} ===')
+        print(text)
 "
 ```
 
-Replace `<path>`, `START`, and `END` with actual values. **Chunk size: 10 pages per call** (not 20)
-to avoid output overflow that causes auto-save to temp files.
+Replace `<path>`, `START`, and `END` with actual values. **Chunk size: 10 pages per call** to avoid output overflow.
+
+If most pages return very little text (<50 characters), the PDF is likely scanned. Inform the user and suggest finding an electronic version with selectable text.
+
+**Decision Logic Summary:**
+
+1. Always try Read tool first (fastest)
+2. If error "exceeds maximum allowed size" or "pdftoppm failed" → use pdfplumber
+3. If pdfplumber extracts <50 chars/page → inform user that PDF is scanned and suggest using electronic version
+4. Inform the user which method is being used for transparency
 
 **Two-column PDF warning** — Academic papers typically use two-column layout. pdfplumber extracts
 text left-to-right across columns, which can interleave sentences from different columns. When
 working with two-column PDFs, read the extracted text carefully and reconstruct the logical flow
 when writing the note. Do not blindly copy interleaved text.
 
-For each PDF, extract: structure (headings, sections), key content, figures/diagrams described in
-text, examples, and any definitions or formulas.
+**What to extract:** For each PDF, extract structure (headings, sections), key content, figures/diagrams described in text, examples, and any definitions or formulas.
 
 ### Step 3 — Read Existing Note (if enriching)
 

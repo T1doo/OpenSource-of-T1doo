@@ -434,6 +434,35 @@ def process_checkboxes(text: str) -> str:
     return text
 
 # ---------------------------------------------------------------------------
+# Step 11b: Ensure blank lines before lists
+# ---------------------------------------------------------------------------
+
+def ensure_list_blank_lines(text: str) -> str:
+    """Insert blank lines at boundaries between list blocks and paragraphs.
+
+    Python-markdown requires blank lines between paragraphs and lists,
+    but Obsidian renders lists even without blank lines (e.g. a line ending
+    with '：' followed immediately by '- item', or a list item immediately
+    followed by the next paragraph).
+    """
+    lines = text.split('\n')
+    result = []
+    list_re = re.compile(r'^\s*[-*+]\s|^\s*\d+[.)]\s')
+    for line in lines:
+        is_list = bool(list_re.match(line))
+        if result:
+            prev = result[-1]
+            prev_is_list = bool(list_re.match(prev))
+            # Insert blank line before a list that follows a non-list non-empty line
+            if is_list and prev.strip() and not prev_is_list:
+                result.append('')
+            # Insert blank line before a non-list non-empty line that follows a list item
+            elif not is_list and line.strip() and prev_is_list:
+                result.append('')
+        result.append(line)
+    return '\n'.join(result)
+
+# ---------------------------------------------------------------------------
 # Step 12: Standard Markdown via python-markdown
 # ---------------------------------------------------------------------------
 
@@ -705,6 +734,9 @@ def convert(input_path: str, output_path: str, mode: str, title: str,
 
     # Step 11: Checkboxes
     text = process_checkboxes(text)
+
+    # Step 11b: Ensure blank lines before lists (Obsidian allows lists without preceding blank line)
+    text = ensure_list_blank_lines(text)
 
     # Step 12: Standard Markdown
     html_body = render_standard_markdown(text)

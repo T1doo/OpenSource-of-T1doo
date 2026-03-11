@@ -119,10 +119,11 @@ The script will:
 
 ### Step 4 — Clean Up Temporary Files
 
-Delete the intermediate summary HTML file (it has already been embedded into the output HTML):
+Delete the intermediate summary HTML file (it has already been embedded into the output HTML).
+Use Python to avoid shell encoding issues with Chinese paths on Windows:
 
 ```bash
-rm "<summary.html>"
+python -c "import os; os.remove(r'<summary.html>')"
 ```
 
 ### Step 5 — Verify & Report
